@@ -1,0 +1,25 @@
+startup_message off
+
+# changed the escape key to "t"
+# since I've swapped the control and capslock keys I feel more comfortable to use "t"
+escape ^t^t
+
+# Automatically detach on hangup.
+autodetach on
+
+shelltitle "shell"
+
+caption always "%{wk}[%{+b rk}Mackie%{gk}%{-b wk}] %{wk}[%{r}Load: %{y}%l%{wk}] [%{g}%c %{bk}%d.%m.%Y%{wk}]"
+
+hardstatus off
+hardstatus alwayslastline '%{=kw}%?%-Lw%?%{r} (%{y}%n%{W}*%f%t%?(%u)%?%{r}) %{g}%?%+Lw%?%?%= %{g}'
+
+#put the hardstatus information in the title of the xterm, you might want to sethardstatus off
+#termcapinfo xterm*|rxvt*|kterm*|Eterm* 'hs:ts=\E]0;:fs=\007:ds=\E]0;\007'
+
+# start with visual bell as default
+vbell on
+vbell_msg "bell on %t (%n)"
+
+# default scrollback value for new windows
+defscrollback 1024
