@@ -1,25 +1,29 @@
 startup_message off
 
-# changed the escape key to "t"
-# since I've swapped the control and capslock keys I feel more comfortable to use "t"
-escape ^t^t
-
-# Automatically detach on hangup.
+# if we accidentally hangup, don't be all attached when we come back. 
 autodetach on
 
-shelltitle "shell"
+# more scrollbacks!
+defscrollback 10000
 
-caption always "%{wk}[%{+b rk}Mackie%{gk}%{-b wk}] %{wk}[%{r}Load: %{y}%l%{wk}] [%{g}%c %{bk}%d.%m.%Y%{wk}]"
+# disable use of the "alternate" terminal
+# thus allowing scrollbars to function as normal in
+# many terminal emulators! <3 it
+termcapinfo xterm* ti@:te@
 
-hardstatus off
-hardstatus alwayslastline '%{=kw}%?%-Lw%?%{r} (%{y}%n%{W}*%f%t%?(%u)%?%{r}) %{g}%?%+Lw%?%?%= %{g}'
+# have screen update terminal emulators titlebar
+termcapinfo xterm* 'hs:ts=\E]0;:fs=\007:ds=\E]0;\007'
+defhstatus "screen ^E (^Et) | $USER@^EH"
 
-#put the hardstatus information in the title of the xterm, you might want to sethardstatus off
-#termcapinfo xterm*|rxvt*|kterm*|Eterm* 'hs:ts=\E]0;:fs=\007:ds=\E]0;\007'
+# but dont print i.e. "bell in window 0" status craps
+#hardstatus off
 
-# start with visual bell as default
-vbell on
-vbell_msg "bell on %t (%n)"
+shelltitle "$ |bash"
 
-# default scrollback value for new windows
-defscrollback 1024
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c %{g}]'
+
+defflow off
+
+#rvm needs this
+shell -${SHELL}
